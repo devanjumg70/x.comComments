@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Twitter Comments Sidebar",
+  "version": "1.0.0",
+  "description": "Display tweet comments in a custom sidebar with AI-powered insights",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "cookies",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*.twitter.com/*",
+    "*://*.x.com/*",
+    "*://api.twitter.com/*",
+    "*://x.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://twitter.com/*", "*://x.com/*"],
+      "js": ["src/content.js"],
+      "css": ["src/styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_title": "Twitter Comments Sidebar"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["src/sidebar.html", "src/sidebar.js", "src/styles.css"],
+      "matches": ["*://twitter.com/*", "*://x.com/*"]
+    }
+  ]
+}

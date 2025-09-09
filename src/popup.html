@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twitter Comments Sidebar</title>
+  <style>
+    body {
+      width: 320px;
+      min-height: 400px;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+      background: #ffffff;
+    }
+
+    .popup-header {
+      background: linear-gradient(135deg, #1d9bf0, #1a8cd8);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .popup-header h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .popup-header p {
+      margin: 8px 0 0 0;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .popup-content {
+      padding: 20px;
+    }
+
+    .status-card {
+      background: #f7f9fa;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      border-left: 4px solid #1d9bf0;
+    }
+
+    .status-card.error {
+      background: #fef2f2;
+      border-left-color: #f4212e;
+    }
+
+    .status-card.success {
+      background: #f0fdf4;
+      border-left-color: #10b981;
+    }
+
+    .status-title {
+      font-weight: 600;
+      font-size: 14px;
+      margin: 0 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-description {
+      font-size: 13px;
+      color: #536471;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0;
+    }
+
+    .feature-list li {
+      padding: 8px 0;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-list li::before {
+      content: '✓';
+      color: #10b981;
+      font-weight: bold;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 12px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: #1d9bf0;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1a8cd8;
+    }
+
+    .btn-secondary {
+      background: #e1e8ed;
+      color: #14171a;
+    }
+
+    .btn-secondary:hover {
+      background: #cfd9de;
+    }
+
+    .popup-footer {
+      padding: 16px 20px;
+      border-top: 1px solid #e1e8ed;
+      background: #f7f9fa;
+      text-align: center;
+    }
+
+    .popup-footer p {
+      margin: 0;
+      font-size: 12px;
+      color: #536471;
+    }
+
+    .loading-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 20px;
+    }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #e1e8ed;
+      border-top: 2px solid #1d9bf0;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup-header">
+    <h1>Twitter Comments Sidebar</h1>
+    <p>AI-powered tweet comment analysis</p>
+  </div>
+
+  <div class="popup-content">
+    <div id="loading" class="loading-indicator">
+      <div class="spinner"></div>
+      <span>Checking status...</span>
+    </div>
+
+    <div id="status-container" class="hidden">
+      <div id="auth-status" class="status-card">
+        <div class="status-title">
+          <span id="auth-icon">🔐</span>
+          <span>Authentication Status</span>
+        </div>
+        <p id="auth-description" class="status-description">
+          Checking authentication...
+        </p>
+      </div>
+
+      <div class="action-buttons">
+        <button id="refresh-btn" class="btn btn-primary">
+          Refresh Status
+        </button>
+        <button id="open-twitter" class="btn btn-secondary">
+          Open Twitter/X
+        </button>
+      </div>
+
+      <h3>Features:</h3>
+      <ul class="feature-list">
+        <li>Real-time comment loading</li>
+        <li>Clean, modern sidebar interface</li>
+        <li>Automatic tweet detection</li>
+        <li>Smart comment parsing</li>
+        <li>Responsive design</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="popup-footer">
+    <p>Visit any tweet page to see comments in the sidebar</p>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
